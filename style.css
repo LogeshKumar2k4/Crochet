@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins&display=swap');
+
+:root {
+    --royal-violet: #6a0dad;
+    --soft-overlay: rgba(106, 13, 173, 0.6);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+
+    /* Custom Background Image */
+    background:
+        linear-gradient(var(--soft-overlay), var(--soft-overlay)),
+        url("Images/bg-crochet.jpg.png") no-repeat center center fixed;
+
+    background-size: cover;
+    color: #333;
+}
+
+/* ===== HEADER ===== */
+header {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    color: #f3e8ff;
+    letter-spacing: 3px;
+}
+
+header p {
+    font-size: 18px;
+    color: #e6ccff;
+    margin-top: 8px;
+}
+
+/* ===== SECTIONS ===== */
+section {
+    background-color: rgba(255, 255, 255, 0.9);
+    margin: 30px auto;
+    padding: 30px;
+    width: 90%;
+    max-width: 1100px;
+    border-radius: 16px;
+}
+
+/* ===== PRODUCTS ===== */
+.products {
+    text-align: center;
+}
+
+
+.product-card {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 80vw;
+    max-width: 700px;
+    min-height: 220px;
+    margin: 32px auto;
+    padding: 0;
+    border-radius: 20px;
+    background: linear-gradient(120deg, #f3e8ff 60%, #fff 100%);
+    box-shadow: 0 8px 32px rgba(106,13,173,0.10), 0 1.5px 8px rgba(0,0,0,0.07);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    gap: 0;
+}
+
+.product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.product-card img {
+    width: 260px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 20px 20px 0;
+    flex-shrink: 0;
+    background: #e6ccff;
+    box-shadow: 2px 0 12px rgba(106,13,173,0.04);
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1;
+    padding: 32px 36px 32px 36px;
+    min-width: 0;
+}
+.product-card h3 {
+    margin: 0 0 12px 0;
+    color: var(--royal-violet);
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
+}
+
+.product-card p, .product-card label {
+    margin: 4px 0;
+    font-size: 1.08rem;
+    color: #4a007d;
+}
+
+.product-card button {
+    margin-top: 18px;
+    align-self: flex-start;
+    font-size: 1rem;
+    padding: 10px 28px;
+    box-shadow: 0 2px 8px rgba(106,13,173,0.08);
+}
+
+/* ===== BUTTON ===== */
+button {
+    background-color: var(--royal-violet);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #580a99;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding: 15px;
+    color: #f3e8ff;
+    font-size: 14px;
+}
+/* ===== Color input box ===== */
+.color-box {
+    margin-top: 5px;
+    padding: 5px;
+    width: 100px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* ===== Products page layout ===== */
+#product-list {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#product-list .product-card {
+    width: 80vw;
+    max-width: 700px;
+    margin: 32px auto;
+    padding: 0;
+    border-radius: 20px;
+    background: linear-gradient(120deg, #f3e8ff 60%, #fff 100%);
+    box-shadow: 0 8px 32px rgba(106,13,173,0.10), 0 1.5px 8px rgba(0,0,0,0.07);
+    overflow: hidden;
+    gap: 0;
+}
+
+/* For order and tracking summary */
+.horizontal-summary {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    width: 80vw;
+    max-width: 700px;
+    min-height: 220px;
+    margin: 32px auto;
+    border-radius: 20px;
+    background: linear-gradient(120deg, #f3e8ff 60%, #fff 100%);
+    box-shadow: 0 8px 32px rgba(106,13,173,0.10), 0 1.5px 8px rgba(0,0,0,0.07);
+    overflow: hidden;
+}
+.horizontal-summary img {
+    width: 260px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0 20px 20px 0;
+    flex-shrink: 0;
+    background: #e6ccff;
+    box-shadow: 2px 0 12px rgba(106,13,173,0.04);
+}
+.horizontal-summary .summary-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex: 1;
+    padding: 32px 36px 32px 36px;
+    min-width: 0;
+}
+.horizontal-summary h3 {
+    margin: 0 0 12px 0;
+    color: var(--royal-violet);
+    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 1px;
+}
+.horizontal-summary p {
+    margin: 4px 0;
+    font-size: 1.08rem;
+    color: #4a007d;
+}
+/* ===== ORDER PAGE ===== */
+.order-section {
+    text-align: center;
+}
+
+.order-product {
+    background: #f3e8ff;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    color: #4a007d;
+}
+
+form {
+    max-width: 400px;
+    margin: auto;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+textarea {
+    resize: none;
+    height: 80px;
+}
+/* ===== TRACKING PAGE ===== */
+.tracking-section {
+    text-align: center;
+}
+
+.order-summary {
+    background: #f3e8ff;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 600px;
+    margin: 20px auto;
+    color: #4a007d;
+}
+
+.order-summary hr {
+    margin: 15px 0;
+}
+
+.delivery {
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+/* ===== TRACKER BAR ===== */
+.tracker {
+    display: flex;
+    justify-content: space-between;
+    max-width: 700px;
+    margin: 30px auto;
+}
+
+.step {
+    flex: 1;
+    margin: 0 5px;
+    padding: 10px;
+    border-radius: 20px;
+    background: #ddd;
+    font-size: 12px;
+}
+
+.step.active {
+    background: #6a0dad;
+    color: white;
+}
+.whatsapp-btn {
+    background: #25D366;
+    color: white;
+    padding: 12px 22px;
+    border-radius: 30px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.whatsapp-btn:hover {
+    background: #1ebe5d;
+}
+section {
+    animation: fadeIn 0.8s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}

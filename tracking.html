@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order Tracking | LTS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>LTS</h1>
+    <p>Love To Surprise</p>
+</header>
+
+<section class="tracking-section">
+    <h2>🎉 Order Placed Successfully!</h2>
+
+    <div class="horizontal-summary" id="track-summary">
+        <img id="track-img" src="" alt="Product Image">
+        <div class="summary-details">
+            <h3 id="pname"></h3>
+            <p>Price: <span id="pprice"></span></p>
+            <p>Color: <span id="pcolor"></span></p>
+            <hr>
+            <p><strong>Customer:</strong> <span id="cname"></span></p>
+            <p><strong>Phone:</strong> <span id="cphone"></span></p>
+            <p><strong>Address:</strong> <span id="caddress"></span></p>
+            <p class="delivery">
+                📦 Estimated Delivery Date:  
+                <strong><span id="deliveryDate"></span></strong>
+            </p>
+        </div>
+    </div>
+
+    <!-- Tracking Bar -->
+    <div class="tracker">
+        <div class="step active">Order Confirmed</div>
+        <div class="step">In Progress</div>
+        <div class="step">Packed</div>
+        <div class="step">Out for Delivery</div>
+        <div class="step">Delivered</div>
+    </div>
+
+    <button onclick="goHome()">Back to Home</button>
+
+    <button class="whatsapp-btn" onclick="sendWhatsAppOrder()">
+    📲 Order via WhatsApp
+</button>
+
+</section>
+
+<footer>
+    <p>© 2026 LTS – Love To Surprise</p>
+</footer>
+
+<script>
+    const order = JSON.parse(localStorage.getItem("orderData"));
+    const customer = JSON.parse(localStorage.getItem("customerData"));
+
+    if (!order || !customer) {
+        alert("Order data missing!");
+        window.location.href = "index.html";
+    }
+
+
+    document.getElementById("pname").innerText = order.name;
+    document.getElementById("pcolor").innerText = order.color;
+    document.getElementById("pprice").innerText = order.price;
+    document.getElementById("cname").innerText = customer.name;
+    document.getElementById("cphone").innerText = customer.phone;
+    document.getElementById("caddress").innerText = customer.address;
+    // Try to guess image path from product name (fallback to airpods/1.jpg)
+    let imgSrc = "images/airpods/1.jpg";
+    if(order.name && order.name.toLowerCase().includes("laptop")) imgSrc = "images/laptopbag/1.jpg";
+    if(order.name && order.name.toLowerCase().includes("bookmark")) imgSrc = "images/bookmark/1.jpg";
+    if(order.name && order.name.toLowerCase().includes("keychain")) imgSrc = "images/keychain/1.jpg";
+    if(order.name && order.name.toLowerCase().includes("bagcharm")) imgSrc = "images/bagcharm/1.jpg";
+    document.getElementById("track-img").src = imgSrc;
+    document.getElementById("track-img").alt = order.name;
+
+    // Delivery date = today + 7 days
+    const delivery = new Date();
+    delivery.setDate(delivery.getDate() + 7);
+    document.getElementById("deliveryDate").innerText =
+        delivery.toDateString();
+
+    function goHome() {
+        localStorage.clear();
+        window.location.href = "index.html";
+    }
+</script>
+
+<script>
+function sendWhatsAppOrder() {
+    const order = JSON.parse(localStorage.getItem("orderData"));
+    const customer = JSON.parse(localStorage.getItem("customerData"));
+
+    const message =
+        `Hello LTS 💜%0A` +
+        `Product: ${order.name}%0A` +
+        `Color: ${order.color}%0A` +
+        `Price: ${order.price}%0A%0A` +
+        `Customer: ${customer.name}%0A` +
+        `Phone: ${customer.phone}%0A` +
+        `Address: ${customer.address}`;
+
+    window.open(`https://wa.me/91XXXXXXXXXX?text=${message}`, "_blank");
+}
+</script>
+
+
+</body>
+</html>

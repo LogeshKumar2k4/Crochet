@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LTS Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<section>
+    <h2>📦 Orders Dashboard</h2>
+    <div id="orders"></div>
+</section>
+
+<script>
+const order = JSON.parse(localStorage.getItem("orderData"));
+const customer = JSON.parse(localStorage.getItem("customerData"));
+
+if(order && customer){
+    document.getElementById("orders").innerHTML = `
+        <div class="product-card">
+            <img src="images/airpods/1.jpg" alt="${order.name}">
+            <div class="product-details">
+                <h3>${order.name}</h3>
+                <p>Price: ${order.price}</p>
+                <p>Color: ${order.color}</p>
+                <p><strong>Customer:</strong> ${customer.name}</p>
+                <p><strong>Phone:</strong> ${customer.phone}</p>
+                <p><strong>Address:</strong> ${customer.address}</p>
+            </div>
+        </div>
+    `;
+} else {
+    document.getElementById("orders").innerText = "No orders yet";
+}
+</script>
+
+</body>
+</html>

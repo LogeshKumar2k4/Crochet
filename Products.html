@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Varieties | LTS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>LTS</h1>
+    <p>Love To Surprise</p>
+</header>
+
+<section class="products">
+    <h2 id="product-title">Products</h2>
+    <div id="product-list"></div>
+</section>
+
+<footer>
+    <p>© 2026 LTS – Love To Surprise</p>
+</footer>
+
+<script src="script.js"></script>
+<script>
+    // Product data (example)
+    const productData = {
+        airpods: [
+            { name: "Button Pouch", price: "₹250", img: "images/airpods/1.jpg", color: "Red" },
+            { name: "Flower Pouch", price: "₹300", img: "images/airpods/2.jpg", color: "Blue" },
+            { name: "Strap Pouch", price: "₹250", img: "images/airpods/3.jpg", color: "Green" },
+            { name: "Pokemon Pouch", price: "₹350", img: "images/airpods/4.jpg", color: "Yellow" },
+            { name: "Sheep Pouch", price: "₹400", img: "images/airpods/5.jpg", color: "Pink" },
+            { name: "Catpaw Pouch", price: "₹500", img: "images/airpods/6.jpg", color: "Purple" },
+            { name: "Dogy Pouch", price: "₹500", img: "images/airpods/7.jpg", color: "White" },
+        ],
+        laptopbag: [
+            { name: "Laptop Bag 1", price: "₹500", img: "images/laptopbag/1.jpg", color: "Black" },
+            { name: "Laptop Bag 2", price: "₹500", img: "images/laptopbag/2.jpg", color: "Blue" },
+            { name: "Laptop Bag 3", price: "₹500", img: "images/laptopbag/3.jpg", color: "Grey" },
+            { name: "Laptop Bag 4", price: "₹500", img: "images/laptopbag/4.jpg", color: "Pink" },
+            { name: "Laptop Bag 5", price: "₹500", img: "images/laptopbag/5.jpg", color: "Purple" },
+            { name: "Laptop Bag 6", price: "₹500", img: "images/laptopbag/6.jpg", color: "White" },
+            { name: "Laptop Bag 7", price: "₹500", img: "images/laptopbag/7.jpg", color: "Red" },
+        ],
+        bookmark: [
+            { name: "Multiple Flowers", price: "₹500", img: "images/bookmark/1.jpg", color: "Black" },
+            { name: "Small charms", price: "₹500", img: "images/bookmark/2.jpg", color: "Blue" },
+            { name: "Sunflower", price: "₹500", img: "images/bookmark/3.jpg", color: "Grey" },
+            { name: "Triple Flowers", price: "₹500", img: "images/bookmark/4.jpg", color: "Pink" },
+            { name: "Flower Clip", price: "₹500", img: "images/bookmark/5.jpg", color: "Purple" },
+            { name: "Flower Bud", price: "₹500", img: "images/bookmark/6.jpg", color: "White" },
+            { name: "Poppy Flower", price: "₹500", img: "images/bookmark/7.jpg", color: "Red" },
+        ],
+        keychain: [
+            { name: "Dress", price: "₹500", img: "images/keychain/1.jpg", color: "Black" },
+            { name: "Bow", price: "₹350", img: "images/keychain/2.jpg", color: "Blue" },
+            { name: "Cat Paw", price: "₹400", img: "images/keychain/3.jpg", color: "Grey" },
+            { name: "Heart", price: "₹500", img: "images/keychain/4.jpg", color: "Pink" },
+            { name: "Avacado", price: "₹350", img: "images/keychain/5.jpg", color: "Purple" },
+            { name: "Fish", price: "₹250", img: "images/keychain/6.jpg", color: "White" },
+            { name: "Flower", price: "₹250", img: "images/keychain/7.jpg", color: "Red" },
+        ],
+        bagcharm: [
+            { name: "Heart", price: "₹500", img: "images/bagcharm/1.jpg", color: "Black" },
+            { name: "Tedy", price: "₹500", img: "images/bagcharm/2.jpg", color: "Blue" },
+            { name: "Smiley", price: "₹500", img: "images/bagcharm/3.jpg", color: "Grey" },
+            { name: "Sunflower", price: "₹500", img: "images/bagcharm/4.jpg", color: "Pink" },
+            { name: "Evel Eye", price: "₹500", img: "images/bagcharm/5.jpg", color: "Purple" },
+            { name: "Cat", price: "₹500", img: "images/bagcharm/6.jpg", color: "White" },
+            { name: "Dog", price: "₹500", img: "images/bagcharm/7.jpg", color: "Red" },
+        ],
+        // Add other products similarly
+    };
+
+    // Get selected product from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const productName = urlParams.get('product') || "airpods";
+
+    // Set product title
+    document.getElementById("product-title").innerText = productName.charAt(0).toUpperCase() + productName.slice(1) + " Varieties";
+
+    // Render products
+    const list = document.getElementById("product-list");
+    // Lazy load products on scroll
+    let loadedCount = 0;
+    function showNextProduct() {
+        if(loadedCount >= productData[productName].length) return;
+        const item = productData[productName][loadedCount];
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.innerHTML = `
+            <img src="${item.img}" alt="${item.name}">
+            <div class="product-details">
+                <h3>${item.name}</h3>
+                <p>Price: ${item.price}</p>
+                <label>Color: </label>
+                <input type="text" value="${item.color}" class="color-box">
+                <br>
+                <button onclick="orderProduct('${item.name}', '${item.price}', '${item.color}', '${item.img}')">Order Now</button>
+            </div>
+        `;
+        list.appendChild(card);
+        loadedCount++;
+    }
+    // Show first product on load
+    showNextProduct();
+    // Show next product on scroll
+    window.addEventListener('scroll', function() {
+        if((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+            showNextProduct();
+        }
+    });
+
+    // Function to send product to order page
+    function orderProduct(name, price, color, img) {
+        const orderData = {
+            name: name,
+            price: price,
+            color: color,
+            img: img
+        };
+        localStorage.setItem("orderData", JSON.stringify(orderData));
+        window.location.href = "order.html";
+    }
+</script>
+
+</body>
+</html>

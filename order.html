@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Confirm Order | LTS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>LTS</h1>
+    <p>Love To Surprise</p>
+</header>
+
+<section class="order-section">
+    <h2>Confirm Your Order</h2>
+
+    <!-- Product Details -->
+    <div class="product-card" id="order-product-card" style="margin: 0 auto 20px auto;">
+        <img id="order-product-img" src="" alt="Product Image">
+        <div class="product-details">
+            <h3 id="product-name"></h3>
+            <p>Price: <span id="product-price"></span></p>
+            <p>Color: <span id="product-color"></span></p>
+        </div>
+    </div>
+
+    <!-- Customer Form -->
+    <form id="orderForm">
+        <input type="text" id="customerName" placeholder="Your Name" required>
+        <input type="tel" id="customerPhone" placeholder="Phone Number" required>
+        <textarea id="customerAddress" placeholder="Delivery Address" required></textarea>
+
+        <select required>
+    <option value="">Select Payment Method</option>
+    <option>Cash on Delivery</option>
+    <option>UPI</option>
+    <option>Google Pay</option>
+    <option>PhonePe</option>
+</select>
+
+
+        <button type="submit">Place Order</button>
+    </form>
+</section>
+
+<footer>
+    <p>© 2026 LTS – Love To Surprise</p>
+</footer>
+
+<script>
+    // Get product data from localStorage
+    const orderData = JSON.parse(localStorage.getItem("orderData"));
+
+    if (!orderData) {
+        alert("No product selected!");
+        window.location.href = "index.html";
+    }
+
+
+    document.getElementById("product-name").innerText = orderData.name;
+    document.getElementById("product-price").innerText = orderData.price;
+    document.getElementById("product-color").innerText = orderData.color;
+    document.getElementById("order-product-img").src = orderData.img || "images/airpods/1.jpg";
+    document.getElementById("order-product-img").alt = orderData.name;
+
+    // Handle form submit
+    document.getElementById("orderForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const customer = {
+            name: document.getElementById("customerName").value,
+            phone: document.getElementById("customerPhone").value,
+            address: document.getElementById("customerAddress").value
+        };
+
+        localStorage.setItem("customerData", JSON.stringify(customer));
+        window.location.href = "tracking.html"; // Page 4
+    });
+</script>
+
+</body>
+</html>
