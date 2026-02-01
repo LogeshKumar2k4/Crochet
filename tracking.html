@@ -69,13 +69,8 @@
     document.getElementById("cname").innerText = customer.name;
     document.getElementById("cphone").innerText = customer.phone;
     document.getElementById("caddress").innerText = customer.address;
-    // Try to guess image path from product name (fallback to airpods/1.jpg)
-    let imgSrc = "images/airpods/1.jpg";
-    if(order.name && order.name.toLowerCase().includes("laptop")) imgSrc = "images/laptopbag/1.jpg";
-    if(order.name && order.name.toLowerCase().includes("bookmark")) imgSrc = "images/bookmark/1.jpg";
-    if(order.name && order.name.toLowerCase().includes("keychain")) imgSrc = "images/keychain/1.jpg";
-    if(order.name && order.name.toLowerCase().includes("bagcharm")) imgSrc = "images/bagcharm/1.jpg";
-    document.getElementById("track-img").src = imgSrc;
+    // Use the correct product image from order.img, fallback to airpods/1.jpg if missing
+    document.getElementById("track-img").src = order.img || "images/airpods/1.jpg";
     document.getElementById("track-img").alt = order.name;
 
     // Delivery date = today + 7 days
